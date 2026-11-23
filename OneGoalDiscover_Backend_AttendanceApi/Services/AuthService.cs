@@ -69,7 +69,7 @@ namespace OneGoalDiscover_Backend_AttendanceApi.Services
             if (validCfg == null || companyId <= 0)
                 return Fail(LoginStatus.InvalidContext);
 
-            await new DatabaseHelper(databaseConnectionUtility).configureConnections(cfgsPath, validCfg, companyId);
+            await databaseConnectionUtility.ConfigureConnectionsAsync(configuration, validCfg, companyId);
 
             // El usuario se consulta en la MCP, igual que en el login de Discover.
             DynamicParameters userParameters = new DynamicParameters();

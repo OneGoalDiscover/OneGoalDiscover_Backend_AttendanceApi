@@ -27,7 +27,7 @@ namespace OneGoalDiscover_Backend_AttendanceApi.Services
 
         public async Task<AttendanceResponse> GetAttendanceAsync(AttendanceSession session, DateOnly startDate, DateOnly endDate, int? employeeId, int page, int pageSize)
         {
-            await new DatabaseHelper(databaseConnectionUtility).configureConnections(configuration["CFGsPath"] ?? string.Empty, session.Cfg, session.CompanyId);
+            await databaseConnectionUtility.ConfigureConnectionsAsync(configuration, session.Cfg, session.CompanyId);
 
             List<AttendanceRow> rows = await readRows(startDate, endDate, employeeId);
             rows = await filterByPermittedBranches(rows, session);
